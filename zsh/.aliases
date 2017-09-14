@@ -6,6 +6,8 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias -- -="cd -"
+alias dev="cd ~/projects/src"
+alias zshalias="atom ~/.dotfiles/zsh/.aliases"
 
 # Shortcuts
 alias dl="cd ~/Downloads"
