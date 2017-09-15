@@ -7,6 +7,10 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+
 source $HOME/.aliases
 source $HOME/.functions
 
