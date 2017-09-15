@@ -19,8 +19,4 @@ export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 # install virtualenvwrapper using `pip3 install virtualenvwrapper`
 export VIRTUALENVWRAPPER_PYTHON='python3'
 export PROJECT_HOME="$HOME/projects/"
-export VIRTUALENVS=${HOME}/.venvs
-
-
-### XDG Configs pull directly from dotfiles ###
-export XDG_CONFIG_HOME="$HOME/.dotfiles"
+export WORKON_HOME="${HOME}/.virtualenvs"

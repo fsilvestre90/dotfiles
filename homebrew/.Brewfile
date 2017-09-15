@@ -2,9 +2,6 @@
 #   `tap Homebrew/bundle`
 #   `brew bundle --file=~/.dotfiles/homebrew/.Brewfile`
 
-brew update
-brew upgrade
-
 # Add formulae that duplicate OS X software with updated versions:
 tap 'caskroom/cask'
 tap 'caskroom/fonts'
@@ -27,7 +24,8 @@ brew 'ssh-copy-id'
 brew 'wget'
 brew 'ack'
 brew 'tree'
-brew 'stow'
+brew 'stow' # used for symlinking dotfiles
+brew 'mas' # https://github.com/mas-cli/mas
 
 # Python
 brew 'python'
@@ -56,12 +54,6 @@ cask 'quicklook-csv'
 cask 'qlstephen'
 
 # Fonts
-cask 'font-sauce-code-powerline'
 cask 'font-source-code-pro'
 cask 'font-source-sans-pro'
 cask 'font-source-serif-pro'
-
-brew cleanup -s
-brew cask cleanup
-brew services cleanup
-brew prune
