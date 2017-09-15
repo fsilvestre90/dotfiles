@@ -9,12 +9,6 @@ if [[ $OSTYPE == darwin* ]]; then
     export PATH=/usr/local/bin:/usr/local/sbin:"$PATH"
 fi
 
-
-### NVM ###
-# Tell NVM where to store its nodes.
-export NVM_DIR="$HOME/.nvm"
-
-
 ### Pip (Python) ###
 # pip should only run if there is a virtualenv currently activated
 # prevents accidentally installing packages without a virtualenv
@@ -33,7 +27,7 @@ export PGDATA="/usr/local/var/postgres"
 
 
 ### VirtualEnvWrapper ###
-export PROJECT_HOME="$HOME/Code"
+export PROJECT_HOME="$HOME/projects/src"
 # The variable $VIRTUALENVWRAPPER_VIRTUALENV_ARGS tells
 # virtualenvwrapper what arguments to pass to virtualenv.
 # export VIRTUALENVWRAPPER_VIRTUALENV_ARGS=''

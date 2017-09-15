@@ -1,5 +1,65 @@
 #!/usr/bin/env bash
 
+function v() {
+	virtualenvpath=${VIRTUALENVS}/${1}
+	if [ -z "${1}" ]
+	then
+		ls ${VIRTUALENVS}
+	elif [ -d "${virtualenvpath}" ]
+	then
+		if [ -z "${oldpath}" ]
+		then
+			export oldpath=$PATH
+		fi
+		export PATH=${virtualenvpath}/bin:$PATH
+		alias cdvirtualenv='cd ${virtualenvpath}'
+		alias cdsitepackages='cd ${virtualenvpath}/lib/python*/site-packages'
+		hash -r
+	else
+		echo "virtualenv $1 not found"
+		return 1
+	fi
+}
+
+function d() {
+	if [ -z "${oldpath}" ]
+	then
+		echo "no virtualenv active"
+		return 1
+	fi
+	export PATH=${oldpath}
+	unalias cdvirtualenv cdsitepackages
+	hash -r
+}
+
+function mkv() {
+	test -d ${VIRTUALENVS} || mkdir -p ${VIRTUALENVS}
+	if [ -z "${1}" ]
+	then
+		echo "Please specify the name of the virtualenv you want to create"
+		return 2
+	fi
+	python=${PYTHON:-python3}
+	virtualenv -p ${python} ${VIRTUALENVS}/${1}
+	${VIRTUALENVS}/${1}/bin/pip install --upgrade pip
+}
+
+function rmv() {
+	if [ -z "${1}" ]
+	then
+		echo "Please specify the virtualenv you want to remove"
+		return 2
+	fi
+	dir=${VIRTUALENVS}/${1}
+	rm -rf ${dir}
+}
+
+function upgrade_pip() {
+	for env in $(v); do
+		${VIRTUALENVS}/${env}/bin/pip install -U pip
+	done
+}
+
 # Create a new directory and enter it
 function mkd() {
 	mkdir -p "$@" && cd "$_";
@@ -84,15 +144,6 @@ function server() {
 	python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port";
 }
 
-# Start a PHP server from a directory, optionally specifying the port
-# (Requires PHP 5.4.0+.)
-function phpserver() {
-	local port="${1:-4000}";
-	local ip=$(ipconfig getifaddr en1);
-	sleep 1 && open "http://${ip}:${port}/" &
-	php -S "${ip}:${port}";
-}
-
 # Compare original and gzipped file size
 function gz() {
 	local origsize=$(wc -c < "$1");
@@ -162,11 +213,11 @@ function getcertnames() {
 
 # `s` with no arguments opens the current directory in Sublime Text, otherwise
 # opens the given location
-function s() {
+function a() {
 	if [ $# -eq 0 ]; then
-		subl .;
+		atom .;
 	else
-		subl "$@";
+		atom "$@";
 	fi;
 }
 

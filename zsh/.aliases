@@ -6,13 +6,23 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias -- -="cd -"
+
+# development
 alias dev="cd ~/projects/src"
+
+# python
+alias cv="which python"
+
+# edit zsh files
 alias zshconfig="atom ~/.dotfiles/zsh"
+
+# edit dotfiles
+alias dotfiles="atom ~/.dotfiles"
 
 # Shortcuts
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
-alias dev="cd ~/projects/dev"
+alias dev="cd ~/projects/src"
 alias g="git"
 
 # Detect which `ls` flavor is in use

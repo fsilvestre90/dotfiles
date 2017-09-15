@@ -11,19 +11,15 @@ fi
 # Custom environment vars... Custom scripts generally go in .zshrc since it's
 # only loaded for interactive shells.
 
-
-### Ansible ###
-# If I've created a vault password file, tell Ansible to use it.
-# For security, NEVER commit this file to source control.
-if [[ -s "$HOME/.ansible_vault_pass.txt" ]]; then
-  export ANSIBLE_VAULT_PASSWORD_FILE="$HOME/.ansible_vault_pass.txt"
-fi
-
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 ### VirtualEnvWrapper ###
 # install virtualenvwrapper using `pip3 install virtualenvwrapper`
 export VIRTUALENVWRAPPER_PYTHON='python3'
-export PROJECT_HOME="$HOME/Code"
+export PROJECT_HOME="$HOME/projects/"
+export VIRTUALENVS=${HOME}/.venvs
 
 
 ### XDG Configs pull directly from dotfiles ###

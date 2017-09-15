@@ -49,3 +49,4 @@ fi
 # answering `yes' to the query when one didn't really mean
 # it.
 setopt RM_STAR_WAIT
+unsetopt correct
